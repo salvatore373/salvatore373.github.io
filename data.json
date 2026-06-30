@@ -1,0 +1,115 @@
+{
+  "profile": {
+    "name": "Your Full Name",
+    "title": "Your Title · e.g. PhD Student in Machine Learning",
+    "photo": "photo.jpg",
+    "bio": "Short bio about yourself. You can use <a href=\"https://example.com\">HTML links</a> and <strong>bold text</strong>.",
+    "links": [
+      { "label": "Email", "url": "mailto:you@example.com" },
+      { "label": "GitHub", "url": "https://github.com/yourusername" },
+      { "label": "Scholar", "url": "https://scholar.google.com/citations?user=YOUR_ID" },
+      { "label": "Twitter", "url": "https://twitter.com/yourhandle" },
+      { "label": "CV (PDF)", "url": "/cv.pdf" }
+    ]
+  },
+
+  "news": [
+    {
+      "date": "Mon YYYY",
+      "tag": "NEW",
+      "text": "A news item with a <strong>tag</strong>."
+    },
+    {
+      "date": "Mon YYYY",
+      "text": "A news item without a tag. You can use <a href=\"#\">links</a> and <strong>bold</strong>."
+    }
+  ],
+
+  "publications": [
+    {
+      "venue": "Conference Name YYYY",
+      "title": "Paper Title: A Descriptive Subtitle",
+      "url": "https://arxiv.org/abs/XXXX.XXXXX",
+      "year": "YYYY",
+      "award": null,
+      "authors": [
+        { "name": "Your Full Name", "self": true },
+        { "name": "Co-Author One" },
+        { "name": "Co-Author Two" },
+        { "name": "Advisor Name" }
+      ],
+      "links": [
+        { "label": "Paper", "url": "https://arxiv.org/abs/XXXX.XXXXX" },
+        { "label": "Code", "url": "https://github.com/yourusername/project" },
+        { "label": "BibTeX", "url": "#bibtex" }
+      ]
+    },
+    {
+      "venue": "Conference Name YYYY",
+      "title": "Another Paper Title",
+      "url": "https://arxiv.org/abs/XXXX.XXXXX",
+      "year": "YYYY",
+      "award": "Best Paper",
+      "authors": [
+        { "name": "Co-Author One" },
+        { "name": "Your Full Name", "self": true },
+        { "name": "Advisor Name" }
+      ],
+      "links": [
+        { "label": "Paper", "url": "#" },
+        { "label": "Code", "url": "#" }
+      ]
+    }
+  ],
+
+  "cv": {
+    "education": [
+      {
+        "period": "YYYY — Now",
+        "role": "PhD in Your Field",
+        "org": "University Name · Advisor: Prof. Name"
+      },
+      {
+        "period": "YYYY — YYYY",
+        "role": "B.S. in Your Field, <em>with honors</em>",
+        "org": "University Name"
+      }
+    ],
+    "experience": [
+      {
+        "period": "Mon YYYY —",
+        "role": "Research Intern",
+        "org": "Company / Lab Name · Team Name"
+      },
+      {
+        "period": "Mon YYYY — Mon YYYY",
+        "role": "Research Assistant",
+        "org": "University Name · Lab Name"
+      }
+    ],
+    "service": [
+      {
+        "period": "YYYY",
+        "role": "Reviewer",
+        "org": "Conference1, Conference2, Conference3"
+      }
+    ]
+  },
+
+  "projects": [
+    {
+      "name": "project-name",
+      "url": "https://github.com/yourusername/project-name",
+      "desc": "Short description of the project and what it does.",
+      "tags": ["python", "llm"],
+      "stars": "1.2k"
+    },
+    {
+      "name": "another-project",
+      "url": "https://github.com/yourusername/another-project",
+      "desc": "Another project description.",
+      "tags": ["pytorch"],
+      "stars": null
+    }
+  ]
+}
