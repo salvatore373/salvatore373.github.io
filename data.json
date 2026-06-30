@@ -1,12 +1,15 @@
 {
   "profile": {
-    "name": "Your Full Name",
-    "title": "Your Title · e.g. PhD Student in Machine Learning",
+    "name": "Salvatore Michele Rago",
+    "title": "PhD Student at La Sapienza University of Rome",
     "photo": "photo.jpg",
-    "bio": "Short bio about yourself. You can use <a href=\"https://example.com\">HTML links</a> and <strong>bold text</strong>.",
+    "_comment_bio": "Short bio about yourself. You can use <a href=\"https://example.com\">HTML links</a> and <strong>bold text</strong>.",
+    "bio": "Hi! I am a first-year PhD student in Artificial Intelligence at Sapienza University of Rome, working under the guidance of Giovanni Trappolini, and a member of the <a href=\"https://rstless.it/\">RSTLess</a> research group.\nMy research interests are Natural Lanugage Processing and Agentic AI.\nThe aim of my research is to investigate agent behavior under these real-world constraints and design optimized, agent-centric environments that fully leverage their capabilities.",
     "links": [
-      { "label": "Email", "url": "mailto:you@example.com" },
-      { "label": "GitHub", "url": "https://github.com/yourusername" },
+      { "label": "Email", "url": "mailto:salvatorerago373@gmail.com" },
+      { "label": "GitHub", "url": "https://github.com/salvatore373" }
+    ],
+    "_comment_links": [
       { "label": "Scholar", "url": "https://scholar.google.com/citations?user=YOUR_ID" },
       { "label": "Twitter", "url": "https://twitter.com/yourhandle" },
       { "label": "CV (PDF)", "url": "/cv.pdf" }
