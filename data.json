@@ -4,19 +4,33 @@
     "title": "PhD Student at La Sapienza University of Rome",
     "photo": "photo.jpg",
     "_comment_bio": "Short bio about yourself. You can use <a href=\"https://example.com\">HTML links</a> and <strong>bold text</strong>.",
-    "bio": "Hi! I am a first-year PhD student in Artificial Intelligence at Sapienza University of Rome, working under the guidance of Giovanni Trappolini, and a member of the <a href=\"https://rstless.it/\">RSTLess</a> research group.\nMy research interests are Natural Lanugage Processing and Agentic AI.\nThe aim of my research is to investigate agent behavior under these real-world constraints and design optimized, agent-centric environments that fully leverage their capabilities.",
+    "bio": "Hi! I am a first-year <strong>PhD student</strong> in Artificial Intelligence at Sapienza University of Rome, working under the guidance of Giovanni Trappolini, and a member of the <a href=\"https://rstless.it/\">RSTLess</a> research group.</br>My research interests are <strong>Natural Lanugage Processing</strong> and <strong>Agentic AI</strong>.</br>The aim of my research is to investigate agent behavior under these <strong>real-world constraints</strong> and design optimized, <strong>agent-centric environments</strong> that fully leverage their capabilities.",
     "links": [
-      { "label": "Email", "url": "mailto:salvatorerago373@gmail.com" },
-      { "label": "GitHub", "url": "https://github.com/salvatore373" }
+      {
+        "label": "Email",
+        "url": "mailto:salvatorerago373@gmail.com"
+      },
+      {
+        "label": "GitHub",
+        "url": "https://github.com/salvatore373"
+      }
     ],
     "_comment_links": [
-      { "label": "Scholar", "url": "https://scholar.google.com/citations?user=YOUR_ID" },
-      { "label": "Twitter", "url": "https://twitter.com/yourhandle" },
-      { "label": "CV (PDF)", "url": "/cv.pdf" }
+      {
+        "label": "Scholar",
+        "url": "https://scholar.google.com/citations?user=YOUR_ID"
+      },
+      {
+        "label": "Twitter",
+        "url": "https://twitter.com/yourhandle"
+      },
+      {
+        "label": "CV (PDF)",
+        "url": "/cv.pdf"
+      }
     ]
   },
-
-  "news": [
+  "_comment_news": [
     {
       "date": "Mon YYYY",
       "tag": "NEW",
@@ -27,8 +41,9 @@
       "text": "A news item without a tag. You can use <a href=\"#\">links</a> and <strong>bold</strong>."
     }
   ],
-
-  "publications": [
+  "news": [],
+  "publications": [],
+  "_comment_publications": [
     {
       "venue": "Conference Name YYYY",
       "title": "Paper Title: A Descriptive Subtitle",
@@ -36,15 +51,33 @@
       "year": "YYYY",
       "award": null,
       "authors": [
-        { "name": "Your Full Name", "self": true },
-        { "name": "Co-Author One" },
-        { "name": "Co-Author Two" },
-        { "name": "Advisor Name" }
+        {
+          "name": "Your Full Name",
+          "self": true
+        },
+        {
+          "name": "Co-Author One"
+        },
+        {
+          "name": "Co-Author Two"
+        },
+        {
+          "name": "Advisor Name"
+        }
       ],
       "links": [
-        { "label": "Paper", "url": "https://arxiv.org/abs/XXXX.XXXXX" },
-        { "label": "Code", "url": "https://github.com/yourusername/project" },
-        { "label": "BibTeX", "url": "#bibtex" }
+        {
+          "label": "Paper",
+          "url": "https://arxiv.org/abs/XXXX.XXXXX"
+        },
+        {
+          "label": "Code",
+          "url": "https://github.com/yourusername/project"
+        },
+        {
+          "label": "BibTeX",
+          "url": "#bibtex"
+        }
       ]
     },
     {
@@ -54,64 +87,127 @@
       "year": "YYYY",
       "award": "Best Paper",
       "authors": [
-        { "name": "Co-Author One" },
-        { "name": "Your Full Name", "self": true },
-        { "name": "Advisor Name" }
+        {
+          "name": "Co-Author One"
+        },
+        {
+          "name": "Your Full Name",
+          "self": true
+        },
+        {
+          "name": "Advisor Name"
+        }
       ],
       "links": [
-        { "label": "Paper", "url": "#" },
-        { "label": "Code", "url": "#" }
+        {
+          "label": "Paper",
+          "url": "#"
+        },
+        {
+          "label": "Code",
+          "url": "#"
+        }
       ]
     }
   ],
-
   "cv": {
     "education": [
       {
-        "period": "YYYY — Now",
-        "role": "PhD in Your Field",
-        "org": "University Name · Advisor: Prof. Name"
+        "period": "2025 — Now",
+        "role": "PhD Student - National PhD in Artificial Intelligence",
+        "org": "University of Rome La Sapienza · Advisor: Prof. Giovanni Trappolini"
       },
       {
-        "period": "YYYY — YYYY",
-        "role": "B.S. in Your Field, <em>with honors</em>",
-        "org": "University Name"
+        "period": "2023 — 2025",
+        "role": "M.S. in Artificial Intelligence and Robotics, 110 <em>with honors</em>",
+        "org": "University of Rome La Sapienza"
+      },
+      {
+        "period": "2020 — 2023",
+        "role": "B.S. in Computer and Automation Engineering, 110",
+        "org": "University of Rome La Sapienza"
       }
     ],
-    "experience": [
+    "experiences": [
       {
-        "period": "Mon YYYY —",
-        "role": "Research Intern",
-        "org": "Company / Lab Name · Team Name"
+        "period": "2023",
+        "role": "Cyberchallenge.it  Sapienza Team",
+        "description": "I ranked among the 20 best over 500+ candidates at the admission test. I joined the Sapienza Team (who won the 2023 edition) and attended a 5-months training course on many Cybersecurity fields, held by Emilio Coppa, Dario Petrillo, Cristian Assaiante. At the local final I achieved the 6th best score (9th position ex aequo)."
       },
       {
-        "period": "Mon YYYY — Mon YYYY",
-        "role": "Research Assistant",
-        "org": "University Name · Lab Name"
+        "period": "2024",
+        "role": "TESP 2024 (Tohoku Engineering Summer School)",
+        "description": "I have been jointly selected by La Sapienza and Tohoku University to participate in the Engineering Summer Program 2024. I am among the 100 participants from all around the world, selected by the home and host Universities as their best students. During this program, I experienced cutting-edge lectures and hands-on lab experiences taught by leading professors in the field of Robotics. I had the opportunity to work in the Space Robotics Lab, directed by Prof. Yoshida. Together with a diverse team, with members from all over the world, I built a moon rover capable of autonomously navigating a sandbox environment from the start to the goal position while avoiding obstacles. In the stimulating environment of the Tohoku University, I had the pleasure of meeting amazing people and talented minds from all over the world. TESP allowed me to enhance my academic experience and to gain hands-on expertise in AI & Robotics,  while immersing myself in the fascinating Japanese culture."
+      },
+      {
+        "period": "2025",
+        "role": "Research Fellowship - University of Rome La Sapienza",
+        "description": "This research fellowship, titled “State of the Art and Decision Trees in Word Sense Disambiguation”, focused on exploring and analyzing existing methodologies for Word Sense Disambiguation, while developing a novel approach based on decision trees aimed at producing explainable results without compromising the accuracy and effectiveness of sense assignment."
       }
     ],
     "service": [
       {
-        "period": "YYYY",
+        "period": "2024-2025",
+        "role": "Student collaboration grant with University Academic Administration",
+        "org": "University of Rome La Sapienza"
+      },
+      {
+        "period": "2026",
         "role": "Reviewer",
-        "org": "Conference1, Conference2, Conference3"
+        "org": "EMNLP 2026"
       }
     ]
   },
-
-  "projects": [
+  "work_experience": [],
+  "_comment_work_experience": [
     {
-      "name": "project-name",
-      "url": "https://github.com/yourusername/project-name",
-      "desc": "Short description of the project and what it does.",
-      "tags": ["python", "llm"],
-      "stars": "1.2k"
+      "period": "Mon YYYY —",
+      "role": "Research Intern",
+      "org": "Company / Lab Name · Team Name"
     },
     {
-      "name": "another-project",
-      "url": "https://github.com/yourusername/another-project",
-      "desc": "Another project description.",
-      "tags": ["pytorch"],
+      "period": "Mon YYYY — Mon YYYY",
+      "role": "Research Assistant",
+      "org": "University Name · Lab Name"
+    }
+  ],
+  "projects": [
+    {
+      "name": "Humanoid Navigation using Control Barrier Functions",
+      "url": "https://github.com/salvatore373/Humanoid-Navigation-using-MPC-LDCBF",
+      "desc": "Humanoids are robots designed to navigate in environments structured for humans. Their dynamics is very complex and has to be taken into account for path planning and gait control, which in turn must be carried out in real time. Hence, they are usually decoupled to reduce the computational load. The novelty of this project consists in describing the problem in an efficient way that allows to solve simultaneously path and gait planning.",
+      "tags": [
+        "python",
+        "humanoid",
+        "robot",
+        "planning"
+      ],
+      "stars": null
+    },
+    {
+      "name": "flutter_sound — OpenSource project contribution",
+      "url": "https://github.com/Canardoux/flutter_sound",
+      "desc": "During a period of nearly 3 months, I made an important contribution to the flutter_sound GitHub project, a plugin to play and record audio in Flutter. In my pull request I adapted the media player to the Android and iOS guidelines, I introduced many new features and I recreated the structure of the whole project. I am proud to see that my name still appears very often on the project's discussions.",
+      "tags": [
+        "flutter",
+        "sound",
+        "android",
+        "ios"
+      ],
+      "stars": null
+    },
+    {
+      "name": "DistantQueue service — cross-platform application",
+      "url": "https://github.com/salvatore373/distant_queue_website",
+      "desc": "I created a service to allow customers of any kind of business to \"jump the line\". This service is made up of two apps (both available on Google Play and on the App Store): DistantQueue Customer (for customers that want to jump the line) and DistantQueue Owner (for business owners that want to delete queues at their shops).",
+      "tags": [
+        "flutter",
+        "aws",
+        "full-stack",
+        "android",
+        "ios",
+        "web"
+      ],
       "stars": null
     }
   ]

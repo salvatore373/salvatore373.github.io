@@ -201,6 +201,7 @@
   .cv-period { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--text-muted); }
   .cv-role { font-size: 15px; font-weight: 500; margin-bottom: 2px; }
   .cv-org { font-size: 14px; color: var(--text-dim); }
+  .cv-desc { font-size: 14px; color: var(--text-dim); margin-top: 6px; line-height: 1.5; }
 
   .projects-grid {
     display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -246,7 +247,7 @@
     .news-item, .cv-item { grid-template-columns: 1fr; gap: 6px; }
     .pub { grid-template-columns: 1fr; }
     .pub-year { display: none; }
-    .nav-links { gap: 16px; }
+    .nav-links { gap: 16px; flex-wrap: wrap; justify-content: center; }
     .nav-links a { font-size: 13px; }
     .nav-right { gap: 12px; }
     section { padding: 60px 20px; }
@@ -269,6 +270,7 @@
         <a href="#news">News</a>
         <a href="#publications">Publications</a>
         <a href="#cv">CV</a>
+        <a href="#work-experience">Work Experience</a>
         <a href="#projects">Projects</a>
       </div>
       <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
@@ -310,8 +312,16 @@
 <section id="cv">
   <div class="container">
     <div class="section-label">Background</div>
-    <h2 class="section-title">Education &amp; Experience</h2>
+    <h2 class="section-title">Education &amp; Experiences</h2>
     <div id="cvContent"><div class="loading">Loading…</div></div>
+  </div>
+</section>
+
+<section id="work-experience">
+  <div class="container">
+    <div class="section-label">Career</div>
+    <h2 class="section-title">Work Experience</h2>
+    <div id="workExperienceContent"><div class="loading">Loading…</div></div>
   </div>
 </section>
 
@@ -391,17 +401,36 @@
     }).join('');
   }
 
+  function renderWorkExperience(items) {
+    const container = document.getElementById('workExperienceContent');
+    if (!items || !items.length) {
+      container.innerHTML = '<div class="loading" style="padding: 10px 0; text-align: left;">No work experience listed yet.</div>';
+      return;
+    }
+    container.innerHTML = items.map(item => `
+      <div class="cv-item fade-in">
+        <div class="cv-period">${escapeHtml(item.period || '')}</div>
+        <div>
+          <div class="cv-role">${item.role || ''}</div>
+          ${item.org ? `<div class="cv-org">${item.org}</div>` : ''}
+          ${item.description ? `<div class="cv-desc">${item.description}</div>` : ''}
+        </div>
+      </div>
+    `).join('');
+  }
+
   function renderCV(cv) {
-    const blocks = ['education', 'experience', 'service'].filter(k => cv[k] && cv[k].length);
+    const blocks = ['education', 'experiences', 'experience', 'service'].filter(k => cv[k] && cv[k].length);
     document.getElementById('cvContent').innerHTML = blocks.map(key => `
       <div class="cv-block">
         <h3>${escapeHtml(key.charAt(0).toUpperCase() + key.slice(1))}</h3>
         ${cv[key].map(item => `
           <div class="cv-item fade-in">
-            <div class="cv-period">${escapeHtml(item.period)}</div>
+            <div class="cv-period">${escapeHtml(item.period || '')}</div>
             <div>
-              <div class="cv-role">${item.role}</div>
-              <div class="cv-org">${item.org}</div>
+              <div class="cv-role">${item.role || ''}</div>
+              ${item.org ? `<div class="cv-org">${item.org}</div>` : ''}
+              ${item.description ? `<div class="cv-desc">${item.description}</div>` : ''}
             </div>
           </div>
         `).join('')}
@@ -438,6 +467,7 @@
       renderNews(data.news || []);
       renderPublications(data.publications || []);
       renderCV(data.cv || {});
+      renderWorkExperience(data.work_experience || data.workExperience || []);
       renderProjects(data.projects || []);
       observeFadeIns();
     } catch (err) {
