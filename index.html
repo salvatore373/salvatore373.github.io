@@ -457,6 +457,25 @@
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
   }
 
+  function toggleSectionVisibility(sectionId, hasData, navHref = `#${sectionId}`) {
+    const sectionEl = document.getElementById(sectionId);
+    if (sectionEl) {
+      if (hasData) {
+        sectionEl.style.display = '';
+      } else {
+        sectionEl.style.display = 'none';
+      }
+    }
+    const navLink = document.querySelector(`.nav-links a[href="${navHref}"]`);
+    if (navLink) {
+      if (hasData) {
+        navLink.style.display = '';
+      } else {
+        navLink.style.display = 'none';
+      }
+    }
+  }
+
   // ---------- Load data.json ----------
   async function loadData() {
     try {
@@ -464,11 +483,29 @@
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const data = await res.json();
       renderProfile(data.profile);
-      renderNews(data.news || []);
-      renderPublications(data.publications || []);
-      renderCV(data.cv || {});
-      renderWorkExperience(data.work_experience || data.workExperience || []);
-      renderProjects(data.projects || []);
+      
+      const hasNews = data.news && data.news.length > 0;
+      toggleSectionVisibility('news', hasNews);
+      if (hasNews) renderNews(data.news);
+
+      const hasPubs = data.publications && data.publications.length > 0;
+      toggleSectionVisibility('publications', hasPubs);
+      if (hasPubs) renderPublications(data.publications);
+
+      const cvBlocks = data.cv ? ['education', 'experiences', 'experience', 'service'].filter(k => data.cv[k] && data.cv[k].length) : [];
+      const hasCV = cvBlocks.length > 0;
+      toggleSectionVisibility('cv', hasCV);
+      if (hasCV) renderCV(data.cv);
+
+      const workExp = data.work_experience || data.workExperience || [];
+      const hasWork = workExp.length > 0;
+      toggleSectionVisibility('work-experience', hasWork);
+      if (hasWork) renderWorkExperience(workExp);
+
+      const hasProjects = data.projects && data.projects.length > 0;
+      toggleSectionVisibility('projects', hasProjects);
+      if (hasProjects) renderProjects(data.projects);
+
       observeFadeIns();
     } catch (err) {
       console.error('Failed to load data.json:', err);
