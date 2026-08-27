@@ -13,6 +13,10 @@
       {
         "label": "GitHub",
         "url": "https://github.com/salvatore373"
+      },
+      {
+        "label": "LinkedIn",
+        "url": "https://www.linkedin.com/in/salvatore-michele-rago-8975601b8/"
       }
     ],
     "_comment_links": [
@@ -130,9 +134,9 @@
     ],
     "experiences": [
       {
-        "period": "2023",
-        "role": "Cyberchallenge.it  Sapienza Team",
-        "description": "I ranked among the 20 best over 500+ candidates at the admission test. I joined the Sapienza Team (who won the 2023 edition) and attended a 5-months training course on many Cybersecurity fields, held by Emilio Coppa, Dario Petrillo, Cristian Assaiante. At the local final I achieved the 6th best score (9th position ex aequo)."
+        "period": "2025",
+        "role": "Research Fellowship - University of Rome La Sapienza",
+        "description": "This research fellowship, titled “State of the Art and Decision Trees in Word Sense Disambiguation”, focused on exploring and analyzing existing methodologies for Word Sense Disambiguation, while developing a novel approach based on decision trees aimed at producing explainable results without compromising the accuracy and effectiveness of sense assignment."
       },
       {
         "period": "2024",
@@ -140,21 +144,21 @@
         "description": "I have been jointly selected by La Sapienza and Tohoku University to participate in the Engineering Summer Program 2024. I am among the 100 participants from all around the world, selected by the home and host Universities as their best students. During this program, I experienced cutting-edge lectures and hands-on lab experiences taught by leading professors in the field of Robotics. I had the opportunity to work in the Space Robotics Lab, directed by Prof. Yoshida. Together with a diverse team, with members from all over the world, I built a moon rover capable of autonomously navigating a sandbox environment from the start to the goal position while avoiding obstacles. In the stimulating environment of the Tohoku University, I had the pleasure of meeting amazing people and talented minds from all over the world. TESP allowed me to enhance my academic experience and to gain hands-on expertise in AI & Robotics,  while immersing myself in the fascinating Japanese culture."
       },
       {
-        "period": "2025",
-        "role": "Research Fellowship - University of Rome La Sapienza",
-        "description": "This research fellowship, titled “State of the Art and Decision Trees in Word Sense Disambiguation”, focused on exploring and analyzing existing methodologies for Word Sense Disambiguation, while developing a novel approach based on decision trees aimed at producing explainable results without compromising the accuracy and effectiveness of sense assignment."
+        "period": "2023",
+        "role": "Cyberchallenge.it  Sapienza Team",
+        "description": "I ranked among the 20 best over 500+ candidates at the admission test. I joined the Sapienza Team (who won the 2023 edition) and attended a 5-months training course on many Cybersecurity fields, held by Emilio Coppa, Dario Petrillo, Cristian Assaiante. At the local final I achieved the 6th best score (9th position ex aequo)."
       }
     ],
     "service": [
       {
-        "period": "2024-2025",
-        "role": "Student collaboration grant with University Academic Administration",
-        "org": "University of Rome La Sapienza"
-      },
-      {
         "period": "2026",
         "role": "Reviewer",
         "org": "EMNLP 2026"
+      },
+      {
+        "period": "2024-2025",
+        "role": "Student collaboration grant with University Academic Administration",
+        "org": "University of Rome La Sapienza"
       }
     ]
   },
