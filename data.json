@@ -46,7 +46,50 @@
     }
   ],
   "news": [],
-  "publications": [],
+  "publications": [
+    {
+      "venue": "CLIC-it 2026",
+      "title": "Beyond Language Specialization: A RAG Evaluation of Italian LLMs",
+      "_url": "https://arxiv.org/abs/XXXX.XXXXX",
+      "year": "2026",
+      "award": null,
+      "authors": [
+        {
+          "name": "Riccardo Agabiti"
+        },
+        {
+          "name": "Giovanni Trappolini"
+        },
+        {
+          "name": "Salvatore Michele Rago",
+          "self": true
+        },
+        {
+          "name": "Raniero Romagnoli"
+        },
+        {
+          "name": "Cristina Giannone"
+        },
+        {
+          "name": "Fabrizio Silvestri"
+        }
+      ],
+      "_links": [
+        {
+          "label": "Paper",
+          "url": "https://arxiv.org/abs/XXXX.XXXXX"
+        },
+        {
+          "label": "Code",
+          "url": "https://github.com/yourusername/project"
+        },
+        {
+          "label": "BibTeX",
+          "url": "#bibtex"
+        }
+      ]
+    }
+  ],
   "_comment_publications": [
     {
       "venue": "Conference Name YYYY",
