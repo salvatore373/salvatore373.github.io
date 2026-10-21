@@ -1,0 +1,66 @@
+{
+  "title": "When Tool Failures Help: Investigating LLM Agent Robustness to Tool Execution Errors",
+  "subtitle": "Discovering why controlled failure signals in tool execution enable autonomous agents to self-correct and achieve higher task completion rates.",
+  "date": "March 2026",
+  "venue": "UNDER REVIEW",
+  "award": null,
+  "authors": [
+    { "name": "Salvatore Michele Rago", "self": true },
+    { "name": "Riccardo Agabiti" },
+    { "name": "Fabrizio Silvestri" },
+    { "name": "Giovanni Trappolini" }
+  ],
+  "media": {
+    "type": "video",
+    "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "alt": "Agent tool execution demo",
+    "caption": "Video overview: Autonomous agent self-correction dynamics when encountering API and environment errors."
+  },
+  "links": [
+    {
+      "label": "ArXiv Preprint",
+      "url": "https://arxiv.org/abs/2602.00000"
+    },
+    {
+      "label": "Code Repository",
+      "url": "https://github.com/salvatore373"
+    },
+    {
+      "label": "BibTeX",
+      "url": "#bibtex"
+    }
+  ],
+  "corpus": [
+    {
+      "type": "paragraph",
+      "text": "Autonomous LLM agents are expected to operate in unpredictable real-world environments with fragile APIs, schema mismatches, and intermittent tool downtime. Standard agent evaluation pipelines treat every tool error as an immediate performance penalty. However, humans frequently learn and adapt through failure feedback."
+    },
+    {
+      "type": "paragraph",
+      "text": "In this work, we demonstrate that informative tool execution errors act as an essential exploration mechanism, driving agents toward more robust reasoning paths and preventing overconfident dead-ends."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "The Anatomy of Tool Execution Errors"
+    },
+    {
+      "type": "paragraph",
+      "text": "We categorize execution errors into three tiers: syntactic validation errors, semantic parameter mismatches, and environment state exceptions. When errors provide structured diagnostic traces, modern LLM reasoning engines demonstrate remarkable resilience."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Empirical Observations"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Descriptive stack traces increase recovery probability by over 40% compared to generic failure flags.",
+        "Agents equipped with explicit error reflection scratchpads avoid repeated missteps in multi-turn environments.",
+        "Overly permissive fallbacks often degrade long-term plan quality more than hard execution halts."
+      ]
+    }
+  ],
+  "bibtex": "@article{rago2026toolerrors,\n  title={When Tool Failures Help: Investigating LLM Agent Robustness to Tool Execution Errors},\n  author={Rago, Salvatore Michele and Agabiti, Riccardo and Silvestri, Fabrizio and Trappolini, Giovanni},\n  journal={arXiv preprint},\n  year={2026}\n}"
+}

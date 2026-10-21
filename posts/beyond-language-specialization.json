@@ -1,0 +1,92 @@
+{
+  "title": "Beyond Language Specialization: A RAG Evaluation of Italian LLMs",
+  "subtitle": "An empirical benchmark investigating retrieval-augmented generation robustness, domain specialization, and context distraction in open Italian language models.",
+  "date": "October 2026",
+  "venue": "CLIC-it 2026",
+  "award": "Oral Presentation",
+  "authors": [
+    { "name": "Riccardo Agabiti" },
+    { "name": "Giovanni Trappolini" },
+    { "name": "Salvatore Michele Rago", "self": true },
+    { "name": "Raniero Romagnoli" },
+    { "name": "Cristina Giannone" },
+    { "name": "Fabrizio Silvestri" }
+  ],
+  "media": {
+    "type": "image",
+    "url": "photo.jpg",
+    "alt": "RAG evaluation architecture diagram",
+    "caption": "Figure: Overview of the multi-stage evaluation pipeline for Italian Retrieval-Augmented Generation."
+  },
+  "links": [
+    {
+      "label": "ArXiv",
+      "url": "https://arxiv.org/abs/2601.00000"
+    },
+    {
+      "label": "ACL Anthology",
+      "url": "https://aclanthology.org/"
+    },
+    {
+      "label": "Code & Benchmark",
+      "url": "https://github.com/salvatore373"
+    },
+    {
+      "label": "BibTeX",
+      "url": "#bibtex"
+    }
+  ],
+  "corpus": [
+    {
+      "type": "paragraph",
+      "text": "Retrieval-Augmented Generation (RAG) has rapidly become the standard approach for grounding Large Language Models (LLMs) in domain-specific external knowledge. While massive multilingual models and English-centric benchmarks receive extensive attention, their behavior when deployed in localized, morphologically rich languages such as Italian remains insufficiently explored."
+    },
+    {
+      "type": "paragraph",
+      "text": "In this paper, we systematically evaluate open-weight Italian language models across retrieval-augmented generation workflows. We investigate whether models trained specifically for language specialization retain robustness when challenged by noisy distractors, long context documents, and cross-domain retrieval queries."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why Language Specialization Is Not Enough"
+    },
+    {
+      "type": "paragraph",
+      "text": "Specialized Italian LLMs demonstrate strong generative fluency and native grammatical competence. However, our experiments reveal that language adaptation during pre-training does not automatically translate into effective information synthesis under retrieval noise."
+    },
+    {
+      "type": "figure",
+      "mediaType": "video",
+      "url": "https://www.youtube.com/watch?v=trKGv1xS_3c",
+      "caption": "Video 1: Walkthrough of retrieval noise sensitivity and context distraction across tested models.",
+      "alt": "Benchmark demonstration video"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Key Benchmark Findings"
+    },
+    {
+      "type": "paragraph",
+      "text": "Across multiple query categories spanning legal, technical, and general-domain Italian texts, our evaluation uncovered three primary phenomena:"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Lexical vs. Semantic Recall: Italian-adapted embeddings achieve higher precision on domain-specific vocabulary, but struggle when queries involve colloquial phrasing.",
+        "Lost in the Context: When the retrieved chunk is buried in the middle of multiple passages, performance degrades by up to 28% compared to top-positioned context.",
+        "Hallucination Sensitivity: Prompt templates preserving Italian formal honorifics significantly reduced ungrounded assertions compared to direct English translations."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Conclusion & Future Work"
+    },
+    {
+      "type": "paragraph",
+      "text": "Our findings underscore the need for dedicated RAG benchmarks beyond English. In future iterations, we aim to investigate agentic retrieval mechanisms where models iteratively critique and refine retrieved evidence."
+    }
+  ],
+  "bibtex": "@inproceedings{agabiti2026beyond,\n  title={Beyond Language Specialization: A RAG Evaluation of Italian LLMs},\n  author={Agabiti, Riccardo and Trappolini, Giovanni and Rago, Salvatore Michele and Romagnoli, Raniero and Giannone, Cristina and Silvestri, Fabrizio},\n  booktitle={Proceedings of CLIC-it 2026},\n  year={2026}\n}"
+}

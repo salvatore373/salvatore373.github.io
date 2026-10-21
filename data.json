@@ -50,9 +50,11 @@
     {
       "venue": "CLIC-it 2026",
       "title": "Beyond Language Specialization: A RAG Evaluation of Italian LLMs",
+      "_post": "posts/beyond-language-specialization.json",
       "_url": "https://arxiv.org/abs/XXXX.XXXXX",
       "year": "2026",
       "award": null,
+      "tldr": "We evaluate whether Italian-specialized models remain competitive against general-purpose alternatives in RAG pipelines. Results show that, for some models, linguistic specialization suffices to match general-purpose models in RAG, but not to surpass them where dense context grounding and precision are decisive.",
       "authors": [
         {
           "name": "Riccardo Agabiti"
@@ -92,9 +94,11 @@
     {
       "venue": "UNDER REVIEW",
       "title": "When Tool Failures Help: Investigating LLM Agent Robustness to Tool Execution Errors",
+      "_post": "posts/when-tool-failures-help.json",
       "_url": "https://arxiv.org/abs/XXXX.XXXXX",
       "year": "2026",
       "award": null,
+      "tldr": "Injecting random tool failures in agent conversations degraded performance in 105 of 126 comparisons and improved it in only 18. Improvements occurred primarily in error-prone, non-reasoning small models—such as Llama-3.2-3B on ToolQA, whose accuracy rose from 8.9% to 14.5%. In these cases, tool failures act as interruptions: they can rescue flawed trajectories by prompting agents to reconsider recent steps, but derail sound ones by disrupting their execution format. The net effect ultimately depends on whether the clean run contains enough correctable mistakes for an interruption to help rather than harm.",
       "authors": [
         {
           "name": "Salvatore Michele Rago",
@@ -128,6 +132,8 @@
     {
       "venue": "UNDER REVIEW",
       "title": "Fail&Forget: Agents Perform Better When They Forget Their Mistakes",
+      "_post": "posts/fail-and-forget.json",
+      "tldr": "While AI agent contexts accumulate all reasoning-action-observation traces - including those with mistakes - unbounded context growth degrades performance. We propose Fail and Forget (F&F), a context pruning mechanism to keep in the context only what is needed to solve the task. F&F cuts context length by up to 47% while improving task success rates by up to 6.9%.",
       "_url": "https://arxiv.org/abs/XXXX.XXXXX",
       "year": "2026",
       "award": null,
@@ -166,6 +172,7 @@
       "url": "https://arxiv.org/abs/XXXX.XXXXX",
       "year": "YYYY",
       "award": null,
+      "tldr": "A 1-2 sentence TL;DR summarizing the key finding or contribution.",
       "authors": [
         {
           "name": "Your Full Name",

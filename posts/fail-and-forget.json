@@ -1,0 +1,61 @@
+{
+  "title": "Fail&Forget: Agents Perform Better When They Forget Their Mistakes",
+  "subtitle": "Introducing selective memory pruning: why purging erroneous trajectories from the context window dramatically boosts multi-step reasoning in LLM agents.",
+  "date": "April 2026",
+  "venue": "UNDER REVIEW",
+  "award": null,
+  "authors": [
+    { "name": "Salvatore Michele Rago", "self": true },
+    { "name": "Fabrizio Silvestri" },
+    { "name": "Giovanni Trappolini" }
+  ],
+  "media": {
+    "type": "image",
+    "url": "photo.jpg",
+    "alt": "Fail and Forget conceptual diagram",
+    "caption": "Figure: Comparison of standard context retention vs. our selective Fail&Forget pruning mechanism."
+  },
+  "links": [
+    {
+      "label": "ArXiv",
+      "url": "https://arxiv.org/abs/2603.00000"
+    },
+    {
+      "label": "Code",
+      "url": "https://github.com/salvatore373"
+    },
+    {
+      "label": "BibTeX",
+      "url": "#bibtex"
+    }
+  ],
+  "corpus": [
+    {
+      "type": "paragraph",
+      "text": "Long-context capability in modern LLMs enables agents to retain dozens of interaction rounds. However, context accumulation is a double-edged sword: keeping failed attempts, invalid queries, and confusing backtrack traces in the prompt biases subsequent token generation and consumes critical attention bandwidth."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "The Fail&Forget Paradigm"
+    },
+    {
+      "type": "paragraph",
+      "text": "Instead of accumulating complete interaction histories, our proposed Fail&Forget framework distills the underlying lesson learned into an atomic constraint, then prunes the detailed failure tokens from the active context."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Key Advantages"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Reduced context window exhaustion across long-horizon planning tasks.",
+        "Elimination of repetitive error looping caused by attention drift towards previous mistaken attempts.",
+        "Up to 35% reduction in inference latency and token costs."
+      ]
+    }
+  ],
+  "bibtex": "@article{rago2026failforget,\n  title={Fail&Forget: Agents Perform Better When They Forget Their Mistakes},\n  author={Rago, Salvatore Michele and Silvestri, Fabrizio and Trappolini, Giovanni},\n  journal={arXiv preprint},\n  year={2026}\n}"
+}

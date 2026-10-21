@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog Post — Salvatore Michele Rago</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #fafafa;
+    --bg-elevated: #ffffff;
+    --bg-card: #ffffff;
+    --bg-news: #f4f4f5;
+    --border: #e5e5e5;
+    --border-hover: #d4d4d4;
+    --text: #18181b;
+    --text-dim: #52525b;
+    --text-muted: #a1a1aa;
+    --accent: #0284c7;
+    --accent-dim: #0369a1;
+    --accent-soft: #e0f2fe;
+    --green: #16a34a;
+    --nav-bg: rgba(250,250,250,0.85);
+    --shadow: 0 1px 2px rgba(0,0,0,0.04);
+  }
+  [data-theme="dark"] {
+    --bg: #0a0a0a;
+    --bg-elevated: #141414;
+    --bg-card: #1a1a1a;
+    --bg-news: #111111;
+    --border: #262626;
+    --border-hover: #404040;
+    --text: #ededed;
+    --text-dim: #a0a0a0;
+    --text-muted: #666666;
+    --accent: #7dd3fc;
+    --accent-dim: #0ea5e9;
+    --accent-soft: #0c4a6e;
+    --green: #4ade80;
+    --nav-bg: rgba(10,10,10,0.85);
+    --shadow: 0 1px 2px rgba(0,0,0,0.4);
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+    transition: background .3s ease, color .3s ease;
+  }
+  a { color: var(--accent); text-decoration: none; transition: color .2s; }
+  a:hover { color: var(--accent-dim); }
+
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--nav-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 0;
+    transition: background .3s ease, border-color .3s ease;
+  }
+  .nav-inner {
+    max-width: 960px; margin: 0 auto; padding: 0 32px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .nav-logo { font-weight: 600; font-size: 15px; letter-spacing: -0.01em; color: var(--text); }
+  .nav-logo:hover { color: var(--accent); }
+  .nav-right { display: flex; align-items: center; gap: 24px; }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a { color: var(--text-dim); font-size: 14px; transition: color .2s; }
+  .nav-links a:hover { color: var(--text); }
+
+  .theme-toggle {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    width: 34px; height: 34px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    transition: all .2s;
+  }
+  .theme-toggle:hover { color: var(--text); border-color: var(--border-hover); background: var(--bg-elevated); }
+  .theme-toggle svg { width: 16px; height: 16px; }
+  .theme-toggle .icon-sun { display: none; }
+  .theme-toggle .icon-moon { display: block; }
+  [data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+  [data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+
+  /* ---------- Post Layout (Anthropic inspired) ---------- */
+  .post-article {
+    padding: 60px 32px 100px;
+  }
+  .post-container {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  /* Header elements */
+  .post-header {
+    margin-bottom: 32px;
+  }
+  .post-top-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  .post-venue {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 500;
+  }
+  .post-award {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    background: var(--accent-soft);
+    color: var(--green);
+    font-weight: 500;
+  }
+  .post-title {
+    font-size: 40px;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+  .post-subtitle {
+    font-size: 18px;
+    color: var(--text-dim);
+    line-height: 1.5;
+    margin-bottom: 24px;
+  }
+  .post-byline {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    color: var(--text-dim);
+    flex-wrap: wrap;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .post-authors .me {
+    color: var(--text);
+    font-weight: 600;
+  }
+  .post-date {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  /* Hero Media below title */
+  .post-hero-media {
+    margin-top: 28px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    box-shadow: var(--shadow);
+  }
+  .post-hero-media img,
+  .post-media-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+  .post-hero-caption {
+    padding: 10px 16px;
+    font-size: 13px;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border);
+    background: var(--bg-elevated);
+  }
+
+  /* Responsive Video Wrapper (YouTube / HTML5 Video) */
+  .video-wrapper {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    background: #000;
+  }
+  .video-wrapper iframe,
+  .video-wrapper video {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    border: 0;
+  }
+
+  /* Links Bar directly below the image/media */
+  .post-links-bar {
+    margin-top: 20px;
+    margin-bottom: 48px;
+    padding: 14px 20px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 14px;
+    box-shadow: var(--shadow);
+  }
+  .post-links-bar-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+  }
+  .post-links-group {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .post-link-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    padding: 6px 12px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text-dim);
+    background: var(--bg-elevated);
+    transition: all .2s ease;
+  }
+  .post-link-pill:hover {
+    color: var(--text);
+    border-color: var(--accent);
+    background: var(--bg);
+  }
+  .post-link-pill svg {
+    width: 12px; height: 12px;
+  }
+
+  /* Corpus (Reading Column) */
+  .post-corpus {
+    max-width: 740px;
+    margin: 0 auto;
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--text);
+  }
+  .post-corpus p {
+    margin-bottom: 24px;
+    color: var(--text);
+  }
+  .post-corpus h2 {
+    font-size: 26px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-top: 48px;
+    margin-bottom: 18px;
+    line-height: 1.3;
+    color: var(--text);
+  }
+  .post-corpus h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 36px;
+    margin-bottom: 14px;
+    color: var(--text);
+  }
+  .post-corpus ul,
+  .post-corpus ol {
+    margin-bottom: 24px;
+    padding-left: 24px;
+  }
+  .post-corpus li {
+    margin-bottom: 10px;
+    line-height: 1.7;
+    color: var(--text);
+  }
+
+  /* Interleaved Figures with Captions */
+  .post-figure {
+    margin: 40px 0;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--bg-card);
+  }
+  .post-figure figcaption {
+    padding: 12px 18px;
+    font-size: 13px;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border);
+    background: var(--bg-elevated);
+    line-height: 1.5;
+  }
+
+  /* Blockquote / Callout */
+  .post-quote {
+    margin: 32px 0;
+    padding: 18px 24px;
+    border-left: 3px solid var(--accent);
+    background: var(--bg-card);
+    border-radius: 0 8px 8px 0;
+    font-style: italic;
+    color: var(--text-dim);
+  }
+  .post-quote cite {
+    display: block;
+    font-style: normal;
+    font-size: 13px;
+    margin-top: 8px;
+    color: var(--text-muted);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* BibTeX Section */
+  .post-bibtex {
+    margin-top: 60px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--bg-card);
+    padding: 24px;
+  }
+  .post-bibtex-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  .post-bibtex-title {
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.05em;
+  }
+  .copy-btn {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    padding: 4px 10px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--bg-elevated);
+    color: var(--text-dim);
+    cursor: pointer;
+    transition: all .2s;
+  }
+  .copy-btn:hover {
+    color: var(--text);
+    border-color: var(--border-hover);
+  }
+  .post-bibtex pre {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 16px;
+    overflow-x: auto;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--text-dim);
+  }
+
+  /* Bottom navigation */
+  .post-bottom-nav {
+    max-width: 740px;
+    margin: 60px auto 0;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: var(--text-dim);
+    padding: 8px 16px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    transition: all .2s ease;
+  }
+  .back-link:hover {
+    color: var(--text);
+    border-color: var(--border-hover);
+    background: var(--bg-elevated);
+  }
+
+  .loading, .error-container {
+    text-align: center;
+    padding: 80px 20px;
+    color: var(--text-muted);
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .error-container h2 {
+    color: var(--text);
+    margin-bottom: 12px;
+    font-family: 'Inter', sans-serif;
+  }
+  .error-container p { margin-bottom: 24px; }
+
+  footer {
+    padding: 40px 32px; border-top: 1px solid var(--border);
+    text-align: center; font-size: 13px; color: var(--text-muted);
+    transition: border-color .3s ease;
+  }
+
+  @media (max-width: 640px) {
+    .post-title { font-size: 28px; }
+    .post-subtitle { font-size: 16px; }
+    .post-article { padding: 40px 20px 60px; }
+    .post-links-bar { flex-direction: column; align-items: flex-start; }
+    .nav-links a { font-size: 13px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Salvatore Michele Rago</a>
+    <div class="nav-right">
+      <div class="nav-links">
+        <a href="index.html#publications">← Publications</a>
+        <a href="index.html#about">About</a>
+      </div>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<main class="post-article">
+  <div class="post-container" id="postContent">
+    <div class="loading">Loading blogpost…</div>
+  </div>
+</main>
+
+<footer>
+  <div>© 2026 Salvatore Michele Rago · Built with care · <a href="index.html">Home</a></div>
+</footer>
+
+<script>
+  // ---------- Theme Management ----------
+  const themeToggle = document.getElementById('themeToggle');
+  const root = document.documentElement;
+  const getSystemTheme = () => window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  const applyTheme = (t) => { root.setAttribute('data-theme', t); localStorage.setItem('theme', t); };
+  applyTheme(localStorage.getItem('theme') || getSystemTheme());
+  themeToggle.addEventListener('click', () => applyTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'));
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+    if (!localStorage.getItem('theme')) applyTheme(e.matches ? 'dark' : 'light');
+  });
+
+  // ---------- Helpers ----------
+  function escapeHtml(s) {
+    if (!s) return '';
+    return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
+  // Detect YouTube URLs (full URL, shortened youtu.be, embed, etc.)
+  function getYouTubeEmbedUrl(url) {
+    if (!url) return null;
+    const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/);
+    return match ? `https://www.youtube.com/embed/${match[1]}` : null;
+  }
+
+  // Render media element (image, video, or YouTube)
+  function renderMedia(media, defaultAlt = '') {
+    if (!media) return '';
+    const url = typeof media === 'string' ? media : media.url;
+    if (!url) return '';
+    const type = typeof media === 'object' && media.type ? media.type.toLowerCase() : '';
+    const alt = (typeof media === 'object' && media.alt) ? media.alt : defaultAlt;
+    const ytEmbed = getYouTubeEmbedUrl(url);
+
+    if (ytEmbed) {
+      return `
+        <div class="video-wrapper">
+          <iframe src="${ytEmbed}" title="${escapeHtml(alt || 'Video')}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+      `;
+    }
+
+    if (type === 'video' || /\.(mp4|webm|ogg)$/i.test(url)) {
+      return `
+        <div class="video-wrapper">
+          <video src="${escapeHtml(url)}" controls playsinline></video>
+        </div>
+      `;
+    }
+
+    return `<img src="${escapeHtml(url)}" alt="${escapeHtml(alt)}" class="post-media-img" loading="lazy">`;
+  }
+
+  // Render interleaved figure with caption
+  function renderFigure(fig) {
+    const mediaHtml = renderMedia(fig, fig.caption || '');
+    const captionHtml = fig.caption ? `<figcaption>${escapeHtml(fig.caption)}</figcaption>` : '';
+    return `<figure class="post-figure">${mediaHtml}${captionHtml}</figure>`;
+  }
+
+  // Render corpus elements (sections, paragraphs, lists, interleaved figures)
+  function renderCorpus(corpus) {
+    if (!corpus || !Array.isArray(corpus)) return '';
+    return corpus.map(item => {
+      if (typeof item === 'string') {
+        return `<p>${item}</p>`;
+      }
+      if (item.type === 'heading' || item.type === 'section' || item.heading || (item.title && !item.content)) {
+        const text = item.text || item.title || item.heading;
+        const level = item.level === 3 ? 3 : 2;
+        return `<h${level}>${escapeHtml(text)}</h${level}>`;
+      }
+      if (item.type === 'figure' || item.image || item.video || (item.url && item.caption)) {
+        return renderFigure(item);
+      }
+      if (item.type === 'list' && Array.isArray(item.items)) {
+        return `<ul>${item.items.map(li => `<li>${li}</li>`).join('')}</ul>`;
+      }
+      if (item.type === 'quote' || item.type === 'callout') {
+        return `
+          <blockquote class="post-quote">
+            <p>${item.text}</p>
+            ${item.author ? `<cite>— ${escapeHtml(item.author)}</cite>` : ''}
+          </blockquote>
+        `;
+      }
+      if (item.text) {
+        return `<p>${item.text}</p>`;
+      }
+      return '';
+    }).join('');
+  }
+
+  // Render complete post
+  function renderPost(post) {
+    document.title = `${post.title} — Salvatore Michele Rago`;
+
+    // Authors formatting
+    const authors = (post.authors || []).map(a => {
+      const name = typeof a === 'string' ? a : a.name;
+      const isSelf = typeof a === 'object' && a.self;
+      return isSelf ? `<span class="me">${escapeHtml(name)}</span>` : escapeHtml(name);
+    }).join(', ');
+
+    // Awards & Venue
+    const venueHtml = post.venue ? `<span class="post-venue">${escapeHtml(post.venue)}</span>` : '';
+    const awardHtml = post.award ? `<span class="post-award">🏆 ${escapeHtml(post.award)}</span>` : '';
+
+    // Hero Media (Image or Video below the title)
+    let heroMediaHtml = '';
+    const heroMedia = post.media || (post.image ? { type: 'image', url: post.image } : (post.video ? { type: 'video', url: post.video } : null));
+    if (heroMedia) {
+      const mediaMarkup = renderMedia(heroMedia, post.title);
+      const captionMarkup = heroMedia.caption ? `<div class="post-hero-caption">${escapeHtml(heroMedia.caption)}</div>` : '';
+      heroMediaHtml = `<div class="post-hero-media">${mediaMarkup}${captionMarkup}</div>`;
+    }
+
+    // Links Bar below the hero media (ArXiv, ACL, Code, etc.)
+    let linksBarHtml = '';
+    if (post.links && post.links.length > 0) {
+      const pills = post.links.map(l => {
+        const isInternal = l.url && l.url.startsWith('#');
+        return `
+          <a href="${escapeHtml(l.url)}" class="post-link-pill" ${isInternal ? '' : 'target="_blank" rel="noopener noreferrer"'}>
+            <span>${escapeHtml(l.label)}</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
+          </a>
+        `;
+      }).join('');
+
+      linksBarHtml = `
+        <div class="post-links-bar">
+          <div class="post-links-bar-label">Paper &amp; Resources</div>
+          <div class="post-links-group">${pills}</div>
+        </div>
+      `;
+    }
+
+    // BibTeX section (if available)
+    let bibtexHtml = '';
+    if (post.bibtex) {
+      bibtexHtml = `
+        <div class="post-bibtex" id="bibtex">
+          <div class="post-bibtex-header">
+            <div class="post-bibtex-title">Citation (BibTeX)</div>
+            <button class="copy-btn" id="copyBibtexBtn">Copy BibTeX</button>
+          </div>
+          <pre><code id="bibtexContent">${escapeHtml(post.bibtex)}</code></pre>
+        </div>
+      `;
+    }
+
+    // Assemble Post View
+    document.getElementById('postContent').innerHTML = `
+      <header class="post-header">
+        ${(venueHtml || awardHtml) ? `<div class="post-top-meta">${venueHtml}${awardHtml}</div>` : ''}
+        <h1 class="post-title">${escapeHtml(post.title)}</h1>
+        ${post.subtitle ? `<div class="post-subtitle">${escapeHtml(post.subtitle)}</div>` : ''}
+        <div class="post-byline">
+          ${authors ? `<span class="post-authors">${authors}</span>` : ''}
+          ${(authors && post.date) ? `<span>·</span>` : ''}
+          ${post.date ? `<time class="post-date">${escapeHtml(post.date)}</time>` : ''}
+        </div>
+        ${heroMediaHtml}
+        ${linksBarHtml}
+      </header>
+
+      <div class="post-corpus">
+        ${renderCorpus(post.corpus)}
+        ${bibtexHtml}
+      </div>
+
+      <nav class="post-bottom-nav">
+        <a href="index.html#publications" class="back-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+          Back to all publications
+        </a>
+      </nav>
+    `;
+
+    // BibTeX copy button handler
+    const copyBtn = document.getElementById('copyBibtexBtn');
+    if (copyBtn) {
+      copyBtn.addEventListener('click', () => {
+        navigator.clipboard.writeText(post.bibtex).then(() => {
+          copyBtn.textContent = 'Copied!';
+          setTimeout(() => { copyBtn.textContent = 'Copy BibTeX'; }, 2000);
+        }).catch(err => console.error('Failed to copy BibTeX:', err));
+      });
+    }
+  }
+
+  // ---------- Fetch and load post JSON ----------
+  async function loadPost() {
+    const params = new URLSearchParams(window.location.search);
+    let postPath = params.get('post');
+    const postId = params.get('id');
+
+    if (!postPath && postId) {
+      postPath = `posts/${postId}.json`;
+    }
+    if (!postPath) {
+      postPath = 'posts/beyond-language-specialization.json';
+    }
+
+    try {
+      const res = await fetch(postPath, { cache: 'no-store' });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const post = await res.json();
+      renderPost(post);
+    } catch (err) {
+      console.error('Failed to load blog post:', err);
+      document.getElementById('postContent').innerHTML = `
+        <div class="error-container">
+          <h2>Blog Post Not Found</h2>
+          <p>Could not load the requested blog post at <code>${escapeHtml(postPath)}</code>.</p>
+          <a href="index.html#publications" class="back-link">← Return to Publications</a>
+        </div>
+      `;
+    }
+  }
+
+  loadPost();
+</script>
+</body>
+</html>

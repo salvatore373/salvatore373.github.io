@@ -166,6 +166,8 @@
     padding: 24px 0; border-bottom: 1px solid var(--border);
     display: grid; grid-template-columns: 1fr auto; gap: 16px;
   }
+  .pub.is-clickable { cursor: pointer; }
+  .pub.is-clickable:hover .pub-title a { color: var(--accent); }
   .pub-venue {
     font-family: 'JetBrains Mono', monospace;
     font-size: 12px; color: var(--accent);
@@ -175,9 +177,48 @@
   .pub-title { font-size: 17px; font-weight: 500; margin-bottom: 8px; line-height: 1.4; }
   .pub-title a { color: var(--text); }
   .pub-title a:hover { color: var(--accent); }
+  .pub-tldr-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 2px 7px;
+    margin-left: 8px;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    background: var(--bg-elevated);
+    color: var(--text-dim);
+    cursor: pointer;
+    vertical-align: middle;
+    line-height: 1.2;
+    transition: all .2s ease;
+    user-select: none;
+    white-space: nowrap;
+  }
+  .pub-tldr-btn:hover {
+    color: var(--accent);
+    border-color: var(--accent-dim);
+    background: var(--accent-soft);
+  }
+  .pub-tldr-btn.is-active {
+    background: var(--accent-soft);
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+  .pub-tldr-chevron {
+    width: 9px;
+    height: 9px;
+    transition: transform .25s ease;
+  }
+  .pub-tldr-btn.is-active .pub-tldr-chevron {
+    transform: rotate(180deg);
+  }
+
   .pub-authors { font-size: 14px; color: var(--text-dim); margin-bottom: 6px; }
   .pub-authors .me { color: var(--text); font-weight: 500; }
-  .pub-links { display: flex; gap: 12px; margin-top: 8px; }
+  .pub-links { display: flex; gap: 12px; margin-top: 10px; }
   .pub-links a {
     font-size: 12px; font-family: 'JetBrains Mono', monospace;
     color: var(--text-muted); padding: 4px 10px;
@@ -185,6 +226,41 @@
     transition: all .2s;
   }
   .pub-links a:hover { color: var(--accent); border-color: var(--accent-dim); }
+
+  .pub-tldr {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease, margin-top 0.3s ease;
+    margin-top: 0;
+  }
+  .pub-tldr.is-expanded {
+    max-height: 400px;
+    opacity: 1;
+    margin-top: 10px;
+  }
+  .pub-tldr-inner {
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.55;
+    padding: 10px 14px;
+    background: var(--bg-news);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+  }
+  .pub-tldr-tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 1px 6px;
+    border-radius: 4px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    margin-right: 6px;
+    letter-spacing: 0.02em;
+    vertical-align: 1px;
+  }
   .pub-year { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--text-muted); align-self: start; }
 
   .cv-block { margin-bottom: 40px; }
@@ -378,27 +454,108 @@
     `).join('');
   }
 
+  function togglePubTldr(btn, event) {
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    const targetId = btn.getAttribute('aria-controls');
+    const targetEl = document.getElementById(targetId);
+    if (!targetEl) return;
+
+    const isExpanded = btn.classList.toggle('is-active');
+    btn.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+    targetEl.classList.toggle('is-expanded', isExpanded);
+  }
+
   function renderPublications(items) {
-    document.getElementById('pubList').innerHTML = items.map(p => {
-      const authors = p.authors.map(a =>
+    document.getElementById('pubList').innerHTML = items.map((p, index) => {
+      const authors = (p.authors || []).map(a =>
         a.self ? `<span class="me">${escapeHtml(a.name)}</span>` : escapeHtml(a.name)
       ).join(', ');
-      const links = (p.links || []).map(l =>
-        `<a href="${escapeHtml(l.url)}" target="_blank">${escapeHtml(l.label)}</a>`
+
+      const validLinks = (p.links || []).filter(l => l && l.url && l.url.trim() && l.url.trim() !== '#');
+      const linksHtml = validLinks.map(l =>
+        `<a href="${escapeHtml(l.url.trim())}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">${escapeHtml(l.label)}</a>`
       ).join('');
+
       const award = p.award ? ` · <span style="color:var(--green)">${escapeHtml(p.award)}</span>` : '';
+
+      const rawTldr = p.tldr || p.tl_dr || p.TLDR;
+      const tldrStr = (typeof rawTldr === 'string')
+        ? rawTldr.trim()
+        : (Array.isArray(rawTldr) ? rawTldr.join(' ').trim() : '');
+
+      const tldrId = `pub-tldr-${index}`;
+      let tldrBtnHtml = '';
+      let tldrHtml = '';
+
+      if (tldrStr) {
+        const cleanTldr = tldrStr.replace(/^tl;?dr\s*[:-]?\s*/i, '');
+        tldrBtnHtml = ` <button type="button" class="pub-tldr-btn" aria-expanded="false" aria-controls="${tldrId}" onclick="togglePubTldr(this, event)"><span>TL;DR</span><svg class="pub-tldr-chevron" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg></button>`;
+        tldrHtml = `
+          <div class="pub-tldr" id="${tldrId}">
+            <div class="pub-tldr-inner">
+              <span class="pub-tldr-tag">TL;DR</span> ${cleanTldr}
+            </div>
+          </div>
+        `;
+      }
+
+      const hasPost = Boolean(p.post && p.post.trim());
+      const hasUrl = Boolean(p.url && p.url.trim() && p.url.trim() !== '#');
+      const hasLinks = hasUrl || validLinks.length > 0;
+      const isClickable = hasPost || hasLinks;
+
+      let primaryUrl = '';
+      let isExternal = false;
+
+      if (hasPost) {
+        primaryUrl = `post.html?post=${encodeURIComponent(p.post.trim())}`;
+      } else if (hasUrl) {
+        primaryUrl = p.url.trim();
+        isExternal = primaryUrl.startsWith('http://') || primaryUrl.startsWith('https://');
+      } else if (validLinks.length > 0) {
+        const paperLink = validLinks.find(l => /paper|pdf/i.test(l.label)) || validLinks[0];
+        primaryUrl = paperLink.url.trim();
+        isExternal = primaryUrl.startsWith('http://') || primaryUrl.startsWith('https://');
+      }
+
+      const titleHtml = (isClickable && primaryUrl)
+        ? `<a href="${escapeHtml(primaryUrl)}" ${isExternal ? 'target="_blank" rel="noopener noreferrer"' : ''}>${escapeHtml(p.title)}</a>`
+        : escapeHtml(p.title);
+
+      const clickableClass = (isClickable && primaryUrl) ? ' is-clickable' : '';
+      const dataHrefAttr = (isClickable && primaryUrl) ? ` data-href="${escapeHtml(primaryUrl)}"` : '';
+
       return `
-        <div class="pub fade-in">
+        <div class="pub fade-in${clickableClass}"${dataHrefAttr}>
           <div>
             <div class="pub-venue">${escapeHtml(p.venue)}${award}</div>
-            <div class="pub-title"><a href="${escapeHtml(p.url)}" target="_blank">${escapeHtml(p.title)}</a></div>
+            <div class="pub-title">${titleHtml}${tldrBtnHtml}</div>
             <div class="pub-authors">${authors}</div>
-            ${links ? `<div class="pub-links">${links}</div>` : ''}
+            ${tldrHtml}
+            ${linksHtml ? `<div class="pub-links">${linksHtml}</div>` : ''}
           </div>
           <div class="pub-year">${escapeHtml(p.year)}</div>
         </div>
       `;
     }).join('');
+
+    document.querySelectorAll('.pub.is-clickable').forEach(el => {
+      el.addEventListener('click', (e) => {
+        if (e.target.closest('a') || e.target.closest('button') || e.target.closest('.pub-tldr')) return;
+        const selection = window.getSelection();
+        if (selection && selection.toString().length > 0) return;
+        const href = el.getAttribute('data-href');
+        if (!href || href === '#') return;
+        if (href.startsWith('http://') || href.startsWith('https://')) {
+          window.open(href, '_blank', 'noopener,noreferrer');
+        } else {
+          window.location.href = href;
+        }
+      });
+    });
   }
 
   function renderWorkExperience(items) {
